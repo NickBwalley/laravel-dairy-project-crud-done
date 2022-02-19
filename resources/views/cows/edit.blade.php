@@ -1,0 +1,97 @@
+@extends('layout.layout')
+@section('page_title','Cows - ')
+@section('content')
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Edit Cow</h1>
+                    </div><!-- /.col -->
+
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Details</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form name="edit_cow" id = "edit_cow" method = "POST" action="/cow/edit">
+                            @csrf
+                            <div class="card-body">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif 
+                        
+                                <div class="card-body">
+                                    <input type="hidden" name="id" value={{$data['cow_id']}}>
+                                    <div class="form-group">
+                                        <label for="role_name">Name</label>
+                                        <input required type="text" class="form-control" value={{$data['name']}} name="name" id="name" placeholder="Enter Role Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cow_name">Age</label>
+                                        <input required type="date" class="form-control" value={{$data['birth_date']}} name="birth_date" id="birth_date" placeholder="Enter Description">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cow_name">Gender</label>
+                                        <select required id="gender" name="gender" class="form-control"> value={{$data['gender']}}
+                                            <option value="F">Cow</option>
+                                            <option value="H">Heiferss</option>
+                                            <option value="B">Bull</option>
+                                            <option value="M">Bull</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="breed">Breed</label>
+                                        <select required id="breed" name="breed" class="form-control"> value={{$data['breed']}}
+                                            <option value="guernsey">Guernsey</option>
+                                            <option value="freshian">Freshian</option>
+                                            <option value="ayrshire">Ayrshire</option>
+                                            <option value="jersey">jersey</option>
+                                        </select>
+                                    </div>
+                                   
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+@endsection
+
+@push('scripts')
+
+@endpush
+
+@push('styles')
+
+@endpush
